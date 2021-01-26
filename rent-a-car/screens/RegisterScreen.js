@@ -1,8 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, StatusBar } from 'react-native'
 import * as firebase from 'firebase'
 
 export default class RegisterScreen extends React.Component {
+    // static navigationOptions = {
+    //     // headerShown: false,
+    //     headerTintColor: 'blue'
+    // }
 
     state = {
         name: '',
@@ -25,7 +29,7 @@ export default class RegisterScreen extends React.Component {
         })
     }
 
-    render() {
+    render() {      
         return (
             <View style={styles.container}>
                 <Text style={styles.greeting}>{`Hello!\nSign up to get started.`}</Text>
@@ -70,9 +74,11 @@ export default class RegisterScreen extends React.Component {
             <TouchableOpacity style={styles.button} onPress={this.handleSignUp} >
                 <Text style={{color: '#FFF', fontWeight:'500'}}>Sign Up</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{marginTop: 32, alignSelf: 'center'}}>
+            <TouchableOpacity 
+                style={{marginTop: 32, alignSelf: 'center'}}
+                onPress={() => this.props.navigation.navigate('Login')} >
                 <Text style={{color: '#414959', fontSize:13}}>
-                New To App? <Text style={{fontWeight:'500', color: '#E9446A'}}>Log In</Text>
+                You have an account? <Text style={{fontWeight:'500', color: '#E9446A'}}>Log In</Text>
                 </Text>
             </TouchableOpacity>
             </View>

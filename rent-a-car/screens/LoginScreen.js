@@ -3,15 +3,34 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, LayoutAnimation, S
 import * as firebase from 'firebase'
 
 export default class LoaginScreen extends React.Component {
-    static navigationOptions = {
-        header: null
-    }
+    // static navigationOptions = {
+    //     // headerShown: false
+    // }
 
 
     state = {
         email: '',
         password: '',
         errorMessage: null,
+        carModel: 'Audi'
+    }
+
+    async componentDidMount() {
+        const where = encodeURIComponent(JSON.stringify({
+            "Make": this.state.carModel,
+            
+          }));
+          const response = await fetch(
+            `https://parseapi.back4app.com/classes/Car_Model_List?limit=10&where=${where}`,
+            {
+              headers: {
+                'X-Parse-Application-Id': 'hlhoNKjOvEhqzcVAJ1lxjicJLZNVv36GdbboZj3Z', // This is the fake app's application id
+                'X-Parse-Master-Key': 'SNMJJF0CZZhTPhLDIqGhTlUNV9r60M2Z5spyWfXW', // This is the fake app's readonly master key
+              }
+            }
+          );
+          const data = await response.json(); // Here you have the data that you need
+          console.log(JSON.stringify(data, null, 2));
     }
 
     handleLogin = () => {
@@ -20,10 +39,11 @@ export default class LoaginScreen extends React.Component {
     }
 
     render() {
+        LayoutAnimation.easeInEaseOut()
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='light-content'></StatusBar>
-                <Text style={styles.greeting}>{`Welcome Back`}</Text>
+                <Text style={styles.greeting}>Welcome Back</Text>
             <View style={styles.error}>
                 <Text>{this.state.errorMessage && <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>}</Text>
             </View>
@@ -45,6 +65,7 @@ export default class LoaginScreen extends React.Component {
                     style={styles.input} 
                     autoCapitalize='none' 
                     placeholder="Password" 
+                    secureTextEntry
                     onChangeText={password => this.setState({ password })} 
                     value={this.state.password}
                     ></TextInput>
