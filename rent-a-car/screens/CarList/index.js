@@ -4,14 +4,20 @@ import styles from './styles'
 import cars from './cars'
 import CarItem from '../CarItem'
 
+
 const CarList = (props) => {
-    console.log(props)
+    const model = props.navigation.state.params.name
+    console.log(model,'props')
+    // let name = JSON.stringify(props.navigation.getParam('name'))
+    let newData = cars.filter(obj => obj.model === model)
+    console.log(newData,'3asbaaaaaaaaaaaa');
+    
     return (
         <View style={styles.container}>
            <FlatList 
-           data={cars}
+           data={newData}
            renderItem={({item}) => 
-            <CarItem car={item}/> }
+            <CarItem car={item} model={model}/> }
             snapToAlignment={'start'}
             decelerationRate={'fast'}
             snapToInterval={Dimensions.get('window').height}

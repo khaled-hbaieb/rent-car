@@ -20,9 +20,12 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+
+
+
 const AppStack = createStackNavigator({
-  // Home: HomeScreen
-  Home: CarList
+  Home: HomeScreen,
+  CarList: CarList
 })
 
 const AuthStack = createStackNavigator({

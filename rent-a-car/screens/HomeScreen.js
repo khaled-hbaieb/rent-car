@@ -17,6 +17,8 @@ export default class HomeScreen extends React.Component {
         firebase.auth().signOut()
     }
 
+    
+
     render() {
         return (
             <View style={styles.container}>
@@ -24,6 +26,9 @@ export default class HomeScreen extends React.Component {
                 <TouchableOpacity style={{marginTop: 32}} onPress={this.signOutUser}>
                     <Text>Log Out</Text>
                 </TouchableOpacity>
+                <Text>Choose a car model</Text>
+                <TouchableOpacity style={{marginTop: 32, backgroundColor:'red'}} onPress={() => this.props.navigation.navigate('CarList',{name:'bmw'})}><Text>BMW</Text></TouchableOpacity>
+                <TouchableOpacity style={{marginTop: 32, backgroundColor:'red'}} onPress={() => this.props.navigation.navigate('CarList',{name:'ferrari'})}><Text>Ferrari</Text></TouchableOpacity>
             </View>
         )
     }

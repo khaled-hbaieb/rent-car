@@ -7,11 +7,12 @@ import ButtonComponent from '../ButtonComponent'
 
 
 const CarItem = (props) => {
-console.log(props)
   const name = props.car.name
   const price = props.car.price
   const image = props.car.image
 const overView = props.car.overView
+
+
 
     
 
