@@ -2,6 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, ScrollView, FlatList, Image } from 'react-native'
 import * as firebase from 'firebase'
 import gallery from './gallery'
+import { FontAwesome } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default class HomeScreen extends React.Component {
     state = {
@@ -12,19 +14,41 @@ export default class HomeScreen extends React.Component {
     componentDidMount() {
         const { email, displayName } = firebase.auth().currentUser
         this.setState({ email, displayName })
+        
     }
 
     signOutUser = () => {
         firebase.auth().signOut()
     }
-    static navigationOptions =  {
+    // static navigationOptions =  {
+    //     headerRight: (
+    //         <View style={{flexDirection:"row", textAlign:"center", alignItems: "center"}}>
+    //             <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><FontAwesome name="user-circle" size={24} color="black" onPress={() => this.props.navigation.navigate('Profile')} /><Text style={{ fontWeight:'bold'}} onPress={() => props.navigation.navigate('Profile')}>Profile</Text></View>
+    //             <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><MaterialIcons name="logout" size={24} color="black" onPress={() => firebase.auth().signOut()} /><Text onPress={() => firebase.auth().signOut()} style={{fontWeight:'bold'}} >Log out</Text></View>
+    //         </View>
+    //       ),
+    //   };
+
+    static navigationOptions = ({ navigation })=>{
+        const { navigate } = navigation
+        return{
+            
+        //     headerRight:(<Button 
+        //     title="Settings" backgroundColor="rgba(0,0,0,0)" color="rgba(0,122,255,1)"
+        //     onPress={() =>navigate('settings')}
+        // />
         headerRight: (
-            <Text style={{marginRight: 5, fontWeight:'bold'}} onPress={() => firebase.auth().signOut()}>Log out</Text>
-          ),
-      };
+                    <View style={{flexDirection:"row", textAlign:"center", alignItems: "center"}}>
+                        <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><FontAwesome name="user-circle" size={24} color="black" onPress={() => navigate('Profile')} /><Text style={{ fontWeight:'bold'}} onPress={() => navigate('Profile')}>Profile</Text></View>
+                        <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><MaterialIcons name="logout" size={24} color="black" onPress={() => firebase.auth().signOut()} /><Text onPress={() => firebase.auth().signOut()} style={{fontWeight:'bold'}} >Log out</Text></View>
+                    </View>
+                  ),
+        } 
+    }
     
 
     render() {
+        
         const image = { uri: "https://static.apidae-tourisme.com/filestore/objets-touristiques/images/43/231/5957419.jpg" };
         return (
             // <View style={styles.container}>

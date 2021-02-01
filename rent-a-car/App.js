@@ -6,7 +6,7 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import * as firebase from 'firebase'
 import CarList from './screens/CarList/index'
-
+import Profile from './screens/Profile'
 
 
 
@@ -27,6 +27,7 @@ firebase.initializeApp(firebaseConfig);
 const AppStack = createStackNavigator({
   Home: HomeScreen,
   CarList: CarList,
+  Profile: Profile
 })
 
 const AuthStack = createStackNavigator({
@@ -46,7 +47,7 @@ export default createAppContainer(
       Auth: AuthStack
     },
     {
-      initialRouteName: "Auth"
+      initialRouteName: "Loading"
     }
   )
 )
