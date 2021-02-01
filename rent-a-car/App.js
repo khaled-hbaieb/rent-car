@@ -1,4 +1,4 @@
-import { createAppContainer, createSwitcherContainer, createSwitchNavigator } from 'react-navigation'
+import {Button, createAppContainer, createSwitcherContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import LoadingScreen from './screens/LoadingScreen'
 import HomeScreen from './screens/HomeScreen'
@@ -6,6 +6,8 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import * as firebase from 'firebase'
 import CarList from './screens/CarList/index'
+import React from 'react';
+
 
 
 
@@ -25,15 +27,30 @@ firebase.initializeApp(firebaseConfig);
 
 const AppStack = createStackNavigator({
   Home: HomeScreen,
-  CarList: CarList
+  CarList: CarList,
+  navigationOptions: ({ navigation }) => ({
+    headerRight: (
+      <Button
+        title="3asba"
+        // onPress={() => navigation.navigate('Parametres')}
+      />
+    ),
+  }),
 })
 
 const AuthStack = createStackNavigator({
   Register: RegisterScreen,
   Login: LoginScreen,
+  
 })
 
-
+// AppStack.navigationOptions = {
+//   headerRight: <Button
+//       // onPress={() => this.props.navigation.navigate('Parametres')}
+//       title="Parameters"
+//       color="#fff"
+//   />,
+// }
 
 
 export default createAppContainer(

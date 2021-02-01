@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, LayoutAnimation, S
 import * as firebase from 'firebase'
 
 export default class LoaginScreen extends React.Component {
-    // static navigationOptions = {
-    //     // headerShown: false
-    // }
+    static navigationOptions = {
+        headerShown: false
+    }
 
 
     state = {
@@ -90,6 +90,7 @@ export default class LoaginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 150
     },
     greeting: {
         marginTop:32,

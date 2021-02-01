@@ -19,15 +19,15 @@ const overView = props.car.overView
     return (
         <View style={styles.carContainer}>
           
-      <ImageBackground source={image} style={styles.image}/>
+      <ImageBackground source={image} style={styles.image} />
       <View style={styles.titles}>
       <Text style={styles.title}>{name}</Text>
       <Text style={styles.price}>{price}</Text>
       </View>
-      {/* <View style={styles.buttonsContainer}>
+      <View style={styles.buttonsContainer}>
       <ButtonComponent type='primary' content='CUSTOM ORDER' carModel={name} image={image} price={price}/>
       <ButtonComponent type='secondary' content='Car Details' carModel={name} image={image} overView={overView}/>
-      </View> */}
+      </View>
     </View>
     )
 }

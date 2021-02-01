@@ -3,10 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, StatusBar }
 import * as firebase from 'firebase'
 
 export default class RegisterScreen extends React.Component {
-    // static navigationOptions = {
-    //     // headerShown: false,
-    //     headerTintColor: 'blue'
-    // }
+    static navigationOptions = {
+        headerShown: false
+    }
 
     state = {
         name: '',
@@ -89,6 +88,7 @@ export default class RegisterScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 150,
         flex: 1,
     },
     greeting: {
