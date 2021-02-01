@@ -20,26 +20,15 @@ export default class HomeScreen extends React.Component {
     signOutUser = () => {
         firebase.auth().signOut()
     }
-    // static navigationOptions =  {
-    //     headerRight: (
-    //         <View style={{flexDirection:"row", textAlign:"center", alignItems: "center"}}>
-    //             <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><FontAwesome name="user-circle" size={24} color="black" onPress={() => this.props.navigation.navigate('Profile')} /><Text style={{ fontWeight:'bold'}} onPress={() => props.navigation.navigate('Profile')}>Profile</Text></View>
-    //             <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><MaterialIcons name="logout" size={24} color="black" onPress={() => firebase.auth().signOut()} /><Text onPress={() => firebase.auth().signOut()} style={{fontWeight:'bold'}} >Log out</Text></View>
-    //         </View>
-    //       ),
-    //   };
+  
 
     static navigationOptions = ({ navigation })=>{
         const { navigate } = navigation
+        const { email, displayName } = firebase.auth().currentUser
         return{
-            
-        //     headerRight:(<Button 
-        //     title="Settings" backgroundColor="rgba(0,0,0,0)" color="rgba(0,122,255,1)"
-        //     onPress={() =>navigate('settings')}
-        // />
         headerRight: (
                     <View style={{flexDirection:"row", textAlign:"center", alignItems: "center"}}>
-                        <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><FontAwesome name="user-circle" size={24} color="black" onPress={() => navigate('Profile')} /><Text style={{ fontWeight:'bold'}} onPress={() => navigate('Profile')}>Profile</Text></View>
+                        <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><FontAwesome name="user-circle" size={24} color="black" onPress={() => navigate('Profile',{email: email, displayName: displayName})} /><Text style={{ fontWeight:'bold'}} onPress={() => navigate('Profile',{email: email, displayName: displayName})}>Profile</Text></View>
                         <View  style={{marginRight: 10,textAlign:"center", alignItems: "center"}}><MaterialIcons name="logout" size={24} color="black" onPress={() => firebase.auth().signOut()} /><Text onPress={() => firebase.auth().signOut()} style={{fontWeight:'bold'}} >Log out</Text></View>
                     </View>
                   ),
